@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class UpdateUserRequest extends FormRequest
 	{
 		return [
 			'name' => ['required', 'string', 'max:55'],
+			'surname' => ['string', 'max:55'],
+			'city' => ['required', 'string', 'max:55'],
 			'email' => ['required', 'email', 'unique:users,email'],
-			'password' => ['confirmed', Password::min(8)], //->letters()->symbols()],
-			'location' => []
+			'password' => ['required', 'confirmed', Password::min(8)->letters()], //->symbols()->numbers()],
+			'isCompany' => ['required', 'boolean'],
 		];
 	}
 }
