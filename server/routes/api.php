@@ -17,16 +17,16 @@ use App\Http\Controllers\AuthEmployerController;
 |
 */
 
-// Route::get('/jobs', [JobController::class, 'index']);
-// Route::post('/jobs', [JobController::class, 'store']);
-
 Route::middleware('auth:sanctum')->group(function () {
-	// return $request->user();
+	Route::get('/user', function (Request $request) {
+		return $request->user();
+	});
+
 	Route::post('/logout', [AuthController::class, 'logout']);
+
+	Route::resource('jobs', JobController::class);
+	Route::get('/jobs/search/{name}', [JobController::class, 'search']);
 });
 
-Route::resource('jobs', JobController::class);
-Route::get('/jobs/search/{name}', [JobController::class, 'search']);
-
-Route::post('/register/employee', [AuthController::class, 'register']);
-Route::post('/login/employee', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
