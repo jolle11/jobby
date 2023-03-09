@@ -13,7 +13,7 @@ class Job extends Model
 		'name',
 		'company',
 		'description',
-		'location',
+		'city',
 		'password'
 	];
 
