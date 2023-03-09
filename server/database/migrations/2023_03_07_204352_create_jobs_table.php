@@ -16,7 +16,7 @@ return new class extends Migration
 			$table->string('name');
 			$table->string('company');
 			$table->string('description');
-			$table->string('location');
+			$table->string('city');
 			$table->integer('applications')->default(0);
 			$table->timestamps();
 		});
